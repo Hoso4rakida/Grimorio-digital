@@ -1,3 +1,11 @@
+const express = require("express");
+const bycrypt = require("bycrypt");
+const pool = require("../conexão_banco/db");
+
+const app = express();
+
+app.use(express.json());
+
 app.post("/ping", (req, res) => {
     console.log("Keep-alive recebido:", new Date().toISOString());
     return res.status(200).json({ ok: true});
