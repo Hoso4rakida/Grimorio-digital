@@ -13,7 +13,7 @@ app.post("/ping", (req, res) => {
     return res.status(200).json({ ok: true});
 });//Manter back end ativo
 
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
     const {nome, email, senha} = req.body;
 
     try {
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
             usuario: newUser.rows[0]
         });
     } catch (err) {
-        console.log(error);
+        console.log(err);
 
         res.status(500).json({
             erro: "Erro no servidor"
@@ -47,4 +47,4 @@ router.post("/", async (req, res) => {
 });
 //Rota de Registro de usuário
 
-module.exports = {register}
+module.exports = router;
