@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme{
-    --color-frosted-blue-50: #ecf7f8;
+--color-frosted-blue-50: #ecf7f8;
 --color-frosted-blue-100: #d9eff2;
 --color-frosted-blue-200: #b3dfe5;
 --color-frosted-blue-300: #8dcfd8;
@@ -64,4 +64,5 @@
 
 :root{
     background-color: #F5F6F8;
+    font-family: "Montserrat", sans-serif;;
 }

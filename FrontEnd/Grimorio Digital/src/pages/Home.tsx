@@ -1,9 +1,11 @@
-import Bar from "../modules/Bar"
+import Bar from "../modules/Bar";
 
 function Home() {
-  return <>
-    <Bar />
-  </>;
+  return (
+    <main className="items-center px-15">
+      <Bar />
+    </main>
+  );
 }
 
 export default Home;
