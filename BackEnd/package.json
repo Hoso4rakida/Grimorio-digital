@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "grimorio-digital-back",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -9,5 +9,11 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^5.2.1",
+    "knex": "^3.1.0",
+    "pg": "^8.20.0"
+  }
 }
