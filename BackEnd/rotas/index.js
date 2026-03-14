@@ -1,6 +1,8 @@
 const express = require("express");
 const bycrypt = require("bycrypt");
 const pool = require("../conexão_banco/db");
+const router = express.Router();
+const port = 5432;
 
 const app = express();
 
@@ -11,7 +13,7 @@ app.post("/ping", (req, res) => {
     return res.status(200).json({ ok: true});
 });//Manter back end ativo
 
-app.post("/register", async (req, res) => {
+router.post("/", async (req, res) => {
     const {nome, email, senha} = req.body;
 
     try {
@@ -44,3 +46,5 @@ app.post("/register", async (req, res) => {
     }
 });
 //Rota de Registro de usuário
+
+module.exports = {register}
