@@ -53,7 +53,7 @@ async function SignIn(req, res) {
         if (!senhaCorreta) return res.status(401).json({erro: "Email ou senha incorreto."});
 
         //separar usuário e senha
-        const { senhaHash: _, ...usuario } = userExist.rows[0];
+        const { senha: _, ...usuario } = userExist.rows[0];
 
         res.status(200).json({
             mensagem: "Usuário autenticado",
