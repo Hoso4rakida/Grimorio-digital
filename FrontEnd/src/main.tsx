@@ -1,18 +1,14 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css"; //CSS global
-import Home from "./pages/Home.tsx"; //CSS por pagina
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { StrictMode } from "react";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />, //pagina principal
-  },
-]);
+import { AuthProvider } from "./hooks/auth";
+import { Routes } from './routes'//rotas do site
+import "./styles.css"; //CSS global
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
+    <AuthProvider>
+      <Routes/>
+    </AuthProvider>
+  </StrictMode>
 );

@@ -1,4 +1,4 @@
-const pool = require("../database/db");
+const Database = require("../database/db");
 const bcrypt = require('bcrypt');
 
 async function SignUp(req, res) {
@@ -6,7 +6,7 @@ async function SignUp(req, res) {
 
     try {
         //verificar se já existe
-        const userExist = await pool.query(
+        const userExist = await Database.query(
             "SELECT * FROM usuarios WHERE email = $1",
             [email]
         );
@@ -19,7 +19,7 @@ async function SignUp(req, res) {
         const senhaHash = await bcrypt.hash(senha, 10);
 
         //inserir usuário
-        const newUser = await pool.query(`INSERT INTO usuarios (nome, email, senha) Values ($1, $2, $3) returning id, nome, email`,[nome, email, senhaHash]
+        const newUser = await Database.query(`INSERT INTO usuarios (nome, email, senha) Values ($1, $2, $3) returning id, nome, email`,[nome, email, senhaHash]
         );
         res.status(201).json({
             mensagem: "Usuário criado",
@@ -39,7 +39,7 @@ async function SignIn(req, res) {
 
     try {
         //verificar se usuário existe
-        const userExist = await pool.query(
+        const userExist = await Database.query(
             "SELECT * FROM usuarios WHERE email = $1",
             [email]
         );
