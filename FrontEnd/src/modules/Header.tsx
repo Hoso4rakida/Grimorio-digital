@@ -61,7 +61,9 @@ function Header() {
         <Register
           isOn={inRegister}
           onClose={() => {
+            setLogin(true);
             setInRegister(false);
+            
           }}
           registred={() => {
             setIsRegistred(true);
