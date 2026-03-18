@@ -80,6 +80,7 @@ function AuthProvider({ children }: AuthProps) {
         timerProgressBar: true,
       });
       }
+       throw error;
     }
   }
 
