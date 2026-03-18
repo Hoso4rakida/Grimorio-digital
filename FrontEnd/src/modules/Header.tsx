@@ -7,6 +7,7 @@ import Register from "./register.tsx";
 function Header() {
   const [getLogin, setLogin] = useState(false);
   const [isRegistred, setIsRegistred] = useState(false);
+  const [inRegister, setInRegister] = useState(false);
 
   return (
     <header className="w-full" >
