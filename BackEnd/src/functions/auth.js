@@ -1,4 +1,4 @@
-const Database = require("../database/db");
+const knex = require('../database')
 const bcrypt = require('bcrypt');
 
 async function SignUp(req, res) {
@@ -6,24 +6,25 @@ async function SignUp(req, res) {
 
     try {
         //verificar se já existe
-        const userExist = await Database.query(
-            "SELECT * FROM usuarios WHERE email = $1",
-            [email]
-        );
-        if (userExist.rows.length > 0) {
-            return res.status(409).json({
-                erro: "Usuário já existe"
-            });
-        }
+        const userExist = await knex('users')//diz qual tabela quer acessar
+                               .where({ email })//diz onde procurar(aqui esta procurando pelo email)
+                               .first();//diz para trazer apenas o primeiro resultado
+
+        if (userExist) return res.status(409).json({ erro: "Usuário já existe" });
         //criptografar senha
         const senhaHash = await bcrypt.hash(senha, 10);
 
         //inserir usuário
-        const newUser = await Database.query(`INSERT INTO usuarios (nome, email, senha) Values ($1, $2, $3) returning id, nome, email`,[nome, email, senhaHash]
-        );
+        const newUser = await knex('users')
+                             .insert({
+                              name: nome,
+                              email,
+                              password: senhaHash
+                             });
+
         res.status(201).json({
             mensagem: "Usuário criado",
-            usuario: newUser.rows[0]
+            usuario: newUser
         });
     } catch (err) {
         console.log(err);
@@ -39,26 +40,23 @@ async function SignIn(req, res) {
 
     try {
         //verificar se usuário existe
-        const userExist = await Database.query(
-            "SELECT * FROM usuarios WHERE email = $1",
-            [email]
-        );
+        const userExist = await knex('users').where({email}).first()
 
         //Verificar se usuário existe
-        if (userExist.rows.length == 0) return res.status(404).json({erro: "Email ou senha incorreto."});
-        
+        if (!userExist) return res.status(404).json({erro: "Email ou senha incorreto."});
         
         //Checar senha
-        const senhaCorreta = await bcrypt.compare(senha, userExist.rows[0].senha);
+        const senhaCorreta = await bcrypt.compare(senha, userExist.password);
         if (!senhaCorreta) return res.status(401).json({erro: "Email ou senha incorreto."});
 
         //separar usuário e senha
-        const { senha: _, ...usuario } = userExist.rows[0];
+        const { senha: _, ...usuario } = userExist;
 
         res.status(200).json({
             mensagem: "Usuário autenticado",
             usuario
         });
+        
     } catch (err) {
         console.log(err);
 

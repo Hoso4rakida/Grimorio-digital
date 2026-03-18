@@ -1,5 +1,5 @@
 const express = require("express");
-const routes = require('./routes');//arquivo com todas as rotas que serão usadas no app
+const routes = require('./src/routes');//arquivo com todas as rotas que serão usadas no app
 const cors = require('cors');//biblioteca que impede que qualquer url faça requisiçao ao back end
 
 
