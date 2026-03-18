@@ -1,10 +1,12 @@
 import { useState } from "react";
 import logo from "../assets/logo.svg";
 import Login from "./login.tsx";
+import Register from "./register.tsx";
 
 function Bar() {
   const [getLogin, setLogin] = useState(false);
   const [isRegistred, setIsRegistred] = useState(false);
+  const [isRegister, setRegister] = useState(false);
 
   return (
     <footer>
@@ -26,7 +28,8 @@ function Bar() {
           </button>
         </div>
       </div>
-      {getLogin && <Login isActive={getLogin} onClose={() => {setLogin(false)}}/>}
+      {getLogin && <Login isActive={getLogin} onClose={() => {setLogin(false)}} onRegister={() => {setRegister(true)}}/>}
+      {isRegister && <Register isOn={isRegister} onClose={() => {setRegister(false)}}/>}
     </footer>
   );
 }
