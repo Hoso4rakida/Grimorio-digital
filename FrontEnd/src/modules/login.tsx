@@ -2,10 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-import backend from "../services/backend";
-import { useAuth } from "../hooks/auth";
-
-import Swal from "sweetalert2";
+// import { useAuth } from "../hooks/auth";
 
 interface LoginProps {
   isActive: boolean;
@@ -20,13 +17,9 @@ const tempLoginData = {
 
 function Login({ isActive, onClose, onRegister}: LoginProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const [isFalhou, setIsFalhou] = useState(false);
   const [loading, setLoading] = useState(false);
-  
-  const { signIn } = useAuth();
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
@@ -62,7 +55,15 @@ function Login({ isActive, onClose, onRegister}: LoginProps) {
     } else {
       setIsFalhou(true);
     }
-  };
+  }
+
+  function handleLogin() {
+    setLoading(true);
+    if (formRef.current) {
+      formRef.current.requestSubmit();
+    }
+    setLoading(false);
+  }
 
   function fecharNoCliqueFora(event: React.MouseEvent<HTMLDialogElement>) {
     if (event.target === dialogRef.current) {
@@ -79,6 +80,7 @@ function Login({ isActive, onClose, onRegister}: LoginProps) {
       className="backdrop:bg-black/80 bg-transparent p-0 m-auto outline-none"
     >
       <form
+        ref={formRef}
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-lg flex flex-col gap-4 border-deep-space-blue-700 border-3 w-lg shadow-2xl"
       >
@@ -87,10 +89,10 @@ function Login({ isActive, onClose, onRegister}: LoginProps) {
         </h2>
 
         {isFalhou && (
-          <p className="text-red-500 text-sm font-bold p-2 roundedw">
+          <p className="text-red-500 text-sm font-bold p-2 rounded">
             Login falhou. Verifique suas credenciais.
           </p>
-        </div>
+        )}
 
        
 
@@ -113,25 +115,25 @@ function Login({ isActive, onClose, onRegister}: LoginProps) {
           </label>
           <input
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="••••••••"
             className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500"
             required
           />
-          {
-            showPassword ?
-            <FaEye className="absolute left-[90%] cursor-pointer" color="#41afbe" size={20} onClick={()=> setShowPassword(false)}/>
-            :
-            <FaEyeSlash className="absolute left-[90%] cursor-pointer" color="#41afbe" size={20} onClick={()=> setShowPassword(true)}/>
-          }
-          </div>
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="text-frosted-blue-500 mt-1 text-sm"
+          >
+            {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+          </button>
         </div>
 
         <div className="flex gap-2 mt-2">
           <button
             disabled={loading}
             onClick={()=> handleLogin()}
-            className="disabled:cursor-not-allowed disabled:bg-frosted-blue-600 transition duration-300 ease-in-out select-none bg-frosted-blue-500 hover:bg-frosted-blue-600 text-white font-bold px-4 py-2 rounded-md transition-colors cursor-pointer w-full"
+            className="disabled:cursor-not-allowed disabled:bg-frosted-blue-600 transition duration-300 ease-in-out select-none bg-frosted-blue-500 hover:bg-frosted-blue-600 text-white font-bold px-4 py-2 rounded-md cursor-pointer w-full"
           >
             { loading ? 'Carregando...' : 'Entrar'}
           </button>
@@ -166,7 +168,7 @@ function Login({ isActive, onClose, onRegister}: LoginProps) {
             </p>
           )}
         </div>
-      </div>
+      </form>
     </dialog>
   );
 }
