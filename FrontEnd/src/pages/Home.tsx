@@ -1,11 +1,14 @@
-import Bar from "../modules/Bar";
+import Header from "../modules/Header";
 
-function Home() {
+import backend from '../services/backend.ts';
+import { useEffect } from "react";
+
+export function Home() {
+
   return (
     <main className="items-center px-15">
-      <Bar />
+      <Header />
     </main>
   );
 }
 
-export default Home;

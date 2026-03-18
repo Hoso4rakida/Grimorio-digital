@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme{
+--color-frosted-blue-50: #ecf7f8;
+--color-frosted-blue-100: #d9eff2;
+--color-frosted-blue-200: #b3dfe5;
+--color-frosted-blue-300: #8dcfd8;
+--color-frosted-blue-400: #67bfcb;
+--color-frosted-blue-500: #41afbe;
+--color-frosted-blue-600: #348c98;
+--color-frosted-blue-700: #276972;
+--color-frosted-blue-800: #1a464c;
+--color-frosted-blue-900: #0d2326;
+--color-frosted-blue-950: #09191b;
+
+--color-deep-space-blue-50: #ebf4f9;
+--color-deep-space-blue-100: #d7e8f4;
+--color-deep-space-blue-200: #b0d2e8;
+--color-deep-space-blue-300: #88bbdd;
+--color-deep-space-blue-400: #61a4d1;
+--color-deep-space-blue-500: #398ec6;
+--color-deep-space-blue-600: #2e719e;
+--color-deep-space-blue-700: #225577;
+--color-deep-space-blue-800: #17394f;
+--color-deep-space-blue-900: #0b1c28;
+--color-deep-space-blue-950: #08141c;
+
+--color-deep-space-blue-50: #ebf4fa;
+--color-deep-space-blue-100: #d6e8f5;
+--color-deep-space-blue-200: #add1eb;
+--color-deep-space-blue-300: #85bae0;
+--color-deep-space-blue-400: #5ca3d6;
+--color-deep-space-blue-500: #338ccc;
+--color-deep-space-blue-600: #2970a3;
+--color-deep-space-blue-700: #1f547a;
+--color-deep-space-blue-800: #143852;
+--color-deep-space-blue-900: #0a1c29;
+--color-deep-space-blue-950: #07141d;
+
+--color-tropical-teal-50: #e9fbfc;
+--color-tropical-teal-100: #d3f6f8;
+--color-tropical-teal-200: #a7eef1;
+--color-tropical-teal-300: #7be5ea;
+--color-tropical-teal-400: #4fdce3;
+--color-tropical-teal-500: #22d3dd;
+--color-tropical-teal-600: #1ca9b0;
+--color-tropical-teal-700: #157f84;
+--color-tropical-teal-800: #0e5558;
+--color-tropical-teal-900: #072a2c;
+--color-tropical-teal-950: #051e1f;
+
+--color-mint-cream-50: #e9fbf8;
+--color-mint-cream-100: #d3f8f0;
+--color-mint-cream-200: #a8f0e2;
+--color-mint-cream-300: #7ce9d3;
+--color-mint-cream-400: #51e1c4;
+--color-mint-cream-500: #25dab6;
+--color-mint-cream-600: #1eae91;
+--color-mint-cream-700: #16836d;
+--color-mint-cream-800: #0f5749;
+--color-mint-cream-900: #072c24;
+--color-mint-cream-950: #051f19;
+}
+
+:root{
+    background-color: #F5F6F8;
+    font-family: "Montserrat", sans-serif;;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+form{
+    color: var(--color-deep-space-blue-950);
+}

@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+import backend from "../services/backend";
+import { useAuth } from "../hooks/auth";
+
+import Swal from "sweetalert2";
+
 interface LoginProps {
   isActive: boolean;
   onClose: () => void;
@@ -14,6 +21,13 @@ const tempLoginData = {
 function Login({ isActive, onClose, onRegister}: LoginProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [isFalhou, setIsFalhou] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+  const { signIn } = useAuth();
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -48,7 +62,7 @@ function Login({ isActive, onClose, onRegister}: LoginProps) {
     } else {
       setIsFalhou(true);
     }
-  }
+  };
 
   function fecharNoCliqueFora(event: React.MouseEvent<HTMLDialogElement>) {
     if (event.target === dialogRef.current) {
@@ -58,6 +72,7 @@ function Login({ isActive, onClose, onRegister}: LoginProps) {
 
   return (
     <dialog
+    id="dialog-"
       ref={dialogRef}
       onClick={fecharNoCliqueFora}
       onClose={onClose}
@@ -75,7 +90,9 @@ function Login({ isActive, onClose, onRegister}: LoginProps) {
           <p className="text-red-500 text-sm font-bold p-2 roundedw">
             Login falhou. Verifique suas credenciais.
           </p>
-        )}
+        </div>
+
+       
 
         <div className="flex flex-col gap-1">
           <label className="text-xs font-bold text-slate-500 uppercase">
@@ -101,14 +118,22 @@ function Login({ isActive, onClose, onRegister}: LoginProps) {
             className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500"
             required
           />
+          {
+            showPassword ?
+            <FaEye className="absolute left-[90%] cursor-pointer" color="#41afbe" size={20} onClick={()=> setShowPassword(false)}/>
+            :
+            <FaEyeSlash className="absolute left-[90%] cursor-pointer" color="#41afbe" size={20} onClick={()=> setShowPassword(true)}/>
+          }
+          </div>
         </div>
 
         <div className="flex gap-2 mt-2">
           <button
-            type="submit"
-            className="bg-frosted-blue-500 hover:bg-frosted-blue-600 text-white font-bold px-4 py-2 rounded-md transition-colors cursor-pointer w-full"
+            disabled={loading}
+            onClick={()=> handleLogin()}
+            className="disabled:cursor-not-allowed disabled:bg-frosted-blue-600 transition duration-300 ease-in-out select-none bg-frosted-blue-500 hover:bg-frosted-blue-600 text-white font-bold px-4 py-2 rounded-md transition-colors cursor-pointer w-full"
           >
-            Entrar
+            { loading ? 'Carregando...' : 'Entrar'}
           </button>
           <button
             type="button"
@@ -141,7 +166,7 @@ function Login({ isActive, onClose, onRegister}: LoginProps) {
             </p>
           )}
         </div>
-      </form>
+      </div>
     </dialog>
   );
 }
