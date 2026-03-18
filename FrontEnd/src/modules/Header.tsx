@@ -1,6 +1,8 @@
 import { useState } from "react";
 import logo from "../assets/logoHeader.svg";
+
 import Login from "./login.tsx";
+import Register from "./register.tsx";
 
 function Header() {
   const [getLogin, setLogin] = useState(false);
@@ -26,7 +28,8 @@ function Header() {
           </button>
         </div>
       </div>
-      {getLogin && <Login isActive={getLogin} onClose={() => {setLogin(false)}}/>}
+      {getLogin && <Login isActive={getLogin} onClose={() => {setLogin(false)}} onRegister={() => {setIsRegistred(true)}}/>}
+      {isRegistred && <Register isOn={isRegistred} onClose={() => {setIsRegistred(false)}}/>}
     </header>
   );
 }

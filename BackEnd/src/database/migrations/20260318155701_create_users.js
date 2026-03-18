@@ -6,7 +6,7 @@ exports.up = function(knex) {
     table.text("password").notNullable();
 
     table.text("token");
-    table.text("token_date");
+    table.text("expires_at");
   });
 };
 

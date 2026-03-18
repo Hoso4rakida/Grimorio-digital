@@ -1,5 +1,24 @@
 const knex = require('../database')
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
+
+function generateToken() {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const array = new Uint32Array(20);
+  crypto.getRandomValues(array);
+  
+  const data = new Date();
+  data.setDate(data.getDate() + 30);
+
+  const expires_at = data.toISOString();;
+  const token = Array.from(array, num => characters[num % characters.length]).join('');
+
+  return { 
+    token, 
+    expires_at 
+  };
+};//codigo para gerar token aleatório e data de validade
+
 
 async function SignUp(req, res) {
     const {nome, email, senha} = req.body;
@@ -14,12 +33,16 @@ async function SignUp(req, res) {
         //criptografar senha
         const senhaHash = await bcrypt.hash(senha, 10);
 
+        const { token, expires_at } = generateToken();
+
         //inserir usuário
         const newUser = await knex('users')
                              .insert({
-                              name: nome,
-                              email,
-                              password: senhaHash
+                               name: nome,
+                               email,
+                               password: senhaHash,
+                               token, 
+                               expires_at
                              });
 
         res.status(201).json({
