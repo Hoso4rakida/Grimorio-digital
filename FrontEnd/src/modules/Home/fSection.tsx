@@ -36,7 +36,7 @@ function Fsection() {
         </div>
       </CardD>
       <CardD sizeH={1} sizeV={2}>
-        <Dices diceSize={20} modifier={1}/>
+        <Dices diceSize={12} modifier={1}/>
       </CardD>
     </section>
   );
