@@ -1,6 +1,7 @@
 import CardD from "../cardsModules/cardD"; //dinamic card
 import CampoTitulo from "../cardsModules/input"; //campo titulo e input estilizados
 import BoxD from "../cardsModules/boxD"; //box dinamica
+import Dices from "../cardsModules/dices"; //dado estilizado
 
 function Fsection() {
   return (
@@ -35,8 +36,7 @@ function Fsection() {
         </div>
       </CardD>
       <CardD sizeH={1} sizeV={2}>
-        <img src="" alt="" />
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt sed quaerat doloremque maxime laboriosam illo, ipsa voluptas autem itaque saepe incidunt ad eligendi perferendis reprehenderit aspernatur. Velit sequi consectetur quisquam!</p>
+        <Dices diceSize={20} modifier={1}/>
       </CardD>
     </section>
   );
