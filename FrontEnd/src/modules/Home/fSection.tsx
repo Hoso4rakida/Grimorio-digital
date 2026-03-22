@@ -1,103 +1,42 @@
-import CardD from "../cardD"; //dinamic card
+import CardD from "../cardsModules/cardD"; //dinamic card
+import CampoTitulo from "../cardsModules/input"; //campo titulo e input estilizados
+import BoxD from "../cardsModules/boxD"; //box dinamica
 
 function Fsection() {
   return (
     <section className="flex flex-row gap-5 mt-5">
-      <CardD sizeH={3} sizeV={1}>
-        <h1 className="text-2xl font-bold">Ficha Exemplo</h1>
-        <div className="bg-deep-space-blue-300 flex flex-col gap-2 p-3 rounded-md mt-3">
-          <label className="font-bold uppercase">Nome do personagem</label>
-          <input
-            className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500 font"
-            placeholder="Ex: Aramil, o Mago"
-          />
-          <label className="font-bold uppercase">Classe</label>
-          <input
-            className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500"
-            placeholder="Ex: Mago, Guerreiro"
-          />
-          {/* Atributos */}
+      <BoxD boxW={2} boxH={1}>
+        <h1 className="text-5xl uppercase">Seu mundo de RPG, <span className="font-bold">Organizado.</span></h1>
+        <p className="text-xl mt-3 font-bold">Crie fichas, gerencie suas campanhas, role dados e crie mesas em um só lugar.</p>
+        <a href="/fichas"><button className="bg-deep-space-blue-900 hover:bg-deep-space-blue-800 text-white font-bold py-2 px-4 rounded-full mt-3 uppercase text-2xl">Começar agora</button></a>
+      </BoxD>
 
+      <CardD sizeH={1} sizeV={1} title="Ficha de exemplo">
+        <div className="bg-deep-space-blue-300 flex flex-col gap-2 p-3 rounded-md mt-3">
+          <CampoTitulo title="Nome do personagem" description="Ex: Aramil, o Mago" />
+          <CampoTitulo title="Classe" description="Ex: Mago, Guerreiro" />
+
+          {/* Atributos */}
           <div className="flex flex-row gap-1">
             <div>
-              <label className="font-bold uppercase">For</label>
-              <input
-                className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500 w-15"
-                placeholder="Ex: 2"
-              />
+              <CampoTitulo title="For" description="Ex: 2" style="w-15"/>
             </div>
 
             <div>
-              <label className="font-bold uppercase">Des</label>
-              <input
-                className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500 w-15"
-                placeholder="Ex: 1"
-              />
+              <CampoTitulo title="Des" description="Ex: 5" style="w-15"/>
             </div>
             <div>
-              <label className="font-bold uppercase">Con</label>
-              <input
-                className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500 w-15"
-                placeholder="Ex: 3"
-              />
+              <CampoTitulo title="Con" description="Ex: 3" style="w-15"/>
             </div>
             <div>
-              <label className="font-bold uppercase">Int</label>
-              <input
-                className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500 w-15"
-                placeholder="Ex: 4"
-              />
+              <CampoTitulo title="Int" description="Ex: 4" style="w-15"/>
             </div>
           </div>
         </div>
       </CardD>
       <CardD sizeH={1} sizeV={2}>
-        <h1 className="text-2xl font-bold">Ficha Exemplo</h1>
-        <div className="bg-deep-space-blue-300 flex flex-col gap-2 p-3 rounded-md mt-3">
-          <label className="font-bold uppercase">Nome do personagem</label>
-          <input
-            className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500 font"
-            placeholder="Ex: Aramil, o Mago"
-          />
-          <label className="font-bold uppercase">Classe</label>
-          <input
-            className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500"
-            placeholder="Ex: Mago, Guerreiro"
-          />
-          {/* Atributos */}
-
-          <div className="flex flex-row gap-1">
-            <div>
-              <label className="font-bold uppercase">For</label>
-              <input
-                className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500 w-15"
-                placeholder="Ex: 2"
-              />
-            </div>
-
-            <div>
-              <label className="font-bold uppercase">Des</label>
-              <input
-                className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500 w-15"
-                placeholder="Ex: 1"
-              />
-            </div>
-            <div>
-              <label className="font-bold uppercase">Con</label>
-              <input
-                className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500 w-15"
-                placeholder="Ex: 3"
-              />
-            </div>
-            <div>
-              <label className="font-bold uppercase">Int</label>
-              <input
-                className="p-2 rounded-md bg-slate-50 hover:bg-slate-100 border border-slate-200 outline-none focus:ring-2 ring-frosted-blue-500 w-15"
-                placeholder="Ex: 4"
-              />
-            </div>
-          </div>
-        </div>
+        <img src="" alt="" />
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt sed quaerat doloremque maxime laboriosam illo, ipsa voluptas autem itaque saepe incidunt ad eligendi perferendis reprehenderit aspernatur. Velit sequi consectetur quisquam!</p>
       </CardD>
     </section>
   );

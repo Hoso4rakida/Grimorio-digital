@@ -64,13 +64,10 @@
 
 :root{
     background-color: #F5F6F8;
-    font-family: "Montserrat", sans-serif;;
+    font-family: "Montserrat", sans-serif;
+    color: var(--color-deep-space-blue-900);
 }
 
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
-}
-
-form{
-    color: var(--color-deep-space-blue-950);
 }
